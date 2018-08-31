@@ -12,7 +12,11 @@ RUN set -x \
   && unzip find-sec-bugs.zip -d /usr/local/bin \
   && rm find-sec-bugs.zip \
   && chmod +x /usr/local/bin/findsecbugs.sh
-  
+
+ADD find-sec-bugs.sh
+
+RUN chmod +x find-sec-bugs.sh
+
 USER 1001
 
-CMD ["/usr/local/bin/findsecbugs.sh", "help"]
+CMD ["find-sec-bugs.sh", "help"]
