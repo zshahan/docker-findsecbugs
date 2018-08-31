@@ -11,12 +11,9 @@ RUN set -x \
 	&& wget -O find-sec-bugs.zip "https://github.com/find-sec-bugs/find-sec-bugs/releases/download/version-$VERSION/findsecbugs-cli-$VERSION.zip" \
   && unzip find-sec-bugs.zip -d /usr/local/bin \
   && rm find-sec-bugs.zip \
+  && sed $'s/\r$//' /usr/local/bin/findsecbugs.sh \
   && chmod +x /usr/local/bin/findsecbugs.sh
-
-ADD find-sec-bugs.sh
-
-RUN chmod +x find-sec-bugs.sh
 
 USER 1001
 
-CMD ["find-sec-bugs.sh", "help"]
+CMD ["bash","-c","findsecbugs.sh", "help"]
